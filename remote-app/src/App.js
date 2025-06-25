@@ -17,9 +17,7 @@ const App = () => {
 
   return (
     <>
-      <div>
-        <CardDetails data={cardDetails} />
-      </div>
+      <CardDetails data={cardDetails} />
       <CardShort data={cardShortDetails} />
     </>
   );

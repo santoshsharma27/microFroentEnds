@@ -1,10 +1,16 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
-const CardDeatils = lazy(() => import("DetailCardInHost/CardDetails"));
-const CardShort = lazy(() => import("ShortCardInHost/CardShort"));
+const CardDeatils = lazy(() => import("DetailCard/CardDetails"));
+const CardShort = lazy(() => import("ShortCard/CardShort"));
 
 const FoodList = () => {
-  const [detailItems, setDetailItems] = useState([]);
   const [shortItems, setShortItems] = useState([]);
+  const [detailItems, setDetailItems] = useState([]);
+
+  useEffect(() => {
+    fetch("https://dummyjson.com/recipes?limit=5&skip=10&select=id,name,image")
+      .then((res) => res.json())
+      .then((data) => setShortItems(data.recipes));
+  }, []);
 
   useEffect(() => {
     fetch(
@@ -14,17 +20,11 @@ const FoodList = () => {
       .then((data) => setDetailItems(data.recipes));
   }, []);
 
-  useEffect(() => {
-    fetch("https://dummyjson.com/recipes?limit=5&skip=10&select=id,name,image")
-      .then((res) => res.json())
-      .then((data) => setShortItems(data.recipes));
-  }, []);
-
   return (
     <>
       <div className="short-list-container">
         <Suspense fallback={<p>Loading...</p>}>
-          {shortItems.length &&
+          {shortItems.length > 0 &&
             shortItems.map((item) => {
               return <CardShort key={item.id} data={item}></CardShort>;
             })}
@@ -32,7 +32,7 @@ const FoodList = () => {
       </div>
       <div className="detail-list-container">
         <Suspense fallback={<p>Loading...</p>}>
-          {detailItems.length &&
+          {detailItems.length > 0 &&
             detailItems.map((item) => {
               return <CardDeatils key={item.id} data={item}></CardDeatils>;
             })}

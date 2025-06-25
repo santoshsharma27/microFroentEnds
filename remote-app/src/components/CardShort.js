@@ -1,8 +1,8 @@
 import React from "react";
 import "./CardShort.css";
 
-const CardShort = (props) => {
-  const { image, name } = props.data;
+const CardShort = ({ data }) => {
+  const { image, name } = data;
   return (
     <div className="card">
       <img src={image} />
