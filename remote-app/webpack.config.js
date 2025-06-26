@@ -27,8 +27,8 @@ module.exports = {
       name: "remoteApp",
       filename: "remoteEntry.js",
       exposes: {
-        "./CardDetails": ".src/components/CardDetails",
-        "./CardShort": ".src/components/CardShort",
+        "./CardDetails": "./src/components/CardDetails.js",
+        "./CardShort": "./src/components/CardShort.js",
       },
       shared: {
         react: { singleton: true },

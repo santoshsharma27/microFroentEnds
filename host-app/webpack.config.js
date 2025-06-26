@@ -26,8 +26,8 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "hostApp",
       remotes: {
-        DetailCard: "remoteApp@http://localhost:3001/remoteEntry.js",
-        ShortCard: "remoteApp@http://localhost:3001/remoteEntry.js",
+        CardDetail: "remoteApp@http://localhost:3001/remoteEntry.js",
+        CardShort: "remoteApp@http://localhost:3001/remoteEntry.js",
         ToDoApp: "ToDoApp@http://localhost:3002/remoteEntry.js",
       },
       shared: {

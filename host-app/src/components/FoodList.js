@@ -1,6 +1,6 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
-const CardDeatils = lazy(() => import("DetailCard/CardDetails"));
-const CardShort = lazy(() => import("ShortCard/CardShort"));
+const CardDeatils = lazy(() => import("CardDetail/CardDetails"));
+const CardShort = lazy(() => import("CardShort/CardShort"));
 
 const FoodList = () => {
   const [shortItems, setShortItems] = useState([]);
