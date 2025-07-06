@@ -15,9 +15,13 @@ const App = () => {
     name: "Classic Margherita Pizza",
   };
 
+  const parentCallback = (result) => {
+    console.log(result);
+  };
+
   return (
     <>
-      <CardDetails data={cardDetails} />
+      <CardDetails data={cardDetails} callback={parentCallback} />
       <CardShort data={cardShortDetails} />
     </>
   );

@@ -1,23 +1,44 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
-const CardDeatils = lazy(() => import("CardDetail/CardDetails"));
+const CardDetils = lazy(() => import("CardDetail/CardDetails"));
 const CardShort = lazy(() => import("CardShort/CardShort"));
 
-const FoodList = () => {
+const FoodList = ({ callback }) => {
   const [shortItems, setShortItems] = useState([]);
   const [detailItems, setDetailItems] = useState([]);
 
+  const callbackParent = (result) => {
+    console.log(result);
+    callback(result);
+  };
+
   useEffect(() => {
-    fetch("https://dummyjson.com/recipes?limit=5&skip=10&select=id,name,image")
-      .then((res) => res.json())
-      .then((data) => setShortItems(data.recipes));
+    const fetchShortItems = async () => {
+      try {
+        const res = await fetch(
+          "https://dummyjson.com/recipes?limit=8&skip=10&select=id,name,image"
+        );
+        const data = await res.json();
+        setShortItems(data.recipes);
+      } catch (err) {
+        console.error("Failed to fetch short items:", err);
+      }
+    };
+    fetchShortItems();
   }, []);
 
   useEffect(() => {
-    fetch(
-      "https://dummyjson.com/recipes?limit=5&select=id,name,image,cuisine,rating"
-    )
-      .then((res) => res.json())
-      .then((data) => setDetailItems(data.recipes));
+    const fetchDetailsItems = async () => {
+      try {
+        const res = await fetch(
+          "https://dummyjson.com/recipes?limit=7&select=id,name,image,cuisine,rating"
+        );
+        const data = await res.json();
+        setDetailItems(data.recipes);
+      } catch (err) {
+        console.error("Failed to fetch short items:", err);
+      }
+    };
+    fetchDetailsItems();
   }, []);
 
   return (
@@ -34,7 +55,13 @@ const FoodList = () => {
         <Suspense fallback={<p>Loading...</p>}>
           {detailItems.length > 0 &&
             detailItems.map((item) => {
-              return <CardDeatils key={item.id} data={item}></CardDeatils>;
+              return (
+                <CardDetils
+                  key={item.id}
+                  data={item}
+                  callback={callbackParent}
+                ></CardDetils>
+              );
             })}
         </Suspense>
       </div>
