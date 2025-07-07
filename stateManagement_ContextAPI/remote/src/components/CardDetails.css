@@ -1,0 +1,28 @@
+.card-details {
+    display: inline-block;
+    width: 210px;
+    height: 330px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+}
+.card-details img {
+    width: 98%;
+}
+.price {
+    font-weight: bold;
+}
+.item-title{
+    font-size: 17px;
+    padding: 5px 0;
+    font-weight: bold;
+}
+
+.add-button {
+    margin-top: 10px;
+    padding: 4px 10px;
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+}

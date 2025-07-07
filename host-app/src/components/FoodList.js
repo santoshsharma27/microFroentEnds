@@ -1,5 +1,5 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
-const CardDetils = lazy(() => import("CardDetail/CardDetails"));
+const CardDetails = lazy(() => import("CardDetail/CardDetails"));
 const CardShort = lazy(() => import("CardShort/CardShort"));
 
 const FoodList = ({ callback }) => {
@@ -56,11 +56,11 @@ const FoodList = ({ callback }) => {
           {detailItems.length > 0 &&
             detailItems.map((item) => {
               return (
-                <CardDetils
+                <CardDetails
                   key={item.id}
                   data={item}
                   callback={callbackParent}
-                ></CardDetils>
+                ></CardDetails>
               );
             })}
         </Suspense>
